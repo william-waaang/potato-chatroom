@@ -1,0 +1,85 @@
+.login {
+  margin: auto 0px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #202125;
+
+  & .title {
+    color: #feb555;
+    font-size: 2rem;
+  }
+
+  & .window {
+    background-color: #333437;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 5% 10%;
+    & .form {
+      width: 100%;
+      border: 0.1em solid grey;
+      border-radius: 1em;
+
+      & .input {
+        border: none;
+        border-bottom: 0.1em solid grey;
+        height: 3rem;
+
+        &:last-of-type {
+          border-bottom: none;
+        }
+
+        & input {
+          height: 100%;
+          padding: 0em;
+          outline: none;
+          background-color: inherit;
+          width: 90%;
+          border: none;
+          border-radius: 0px;
+          font-size: 1rem;
+          padding: 0 1rem;
+          color: white;
+        }
+      }
+    }
+    & .button {
+      width: 100%;
+      height: 3em;
+      font-size: 1rem;
+      margin-top: 1em;
+    }
+
+    & .reminder {
+      font-size: 1rem;
+      color: white;
+      & .action {
+        cursor: pointer;
+      }
+    }
+
+    & .systemInfo {
+      width: 100%;
+      color: white;
+      font-size: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+
+      & select {
+        text-align: center;
+        min-width: 50px;
+        background-color: inherit;
+        color: white;
+        padding: 0.5em 1em;
+        border-radius: 1em;
+      }
+    }
+  }
+}
