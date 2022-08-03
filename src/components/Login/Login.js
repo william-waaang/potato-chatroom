@@ -3,6 +3,7 @@ import Card from "../UI/Card";
 import Button from "../UI/Button";
 import { useRef, useState } from "react";
 import showToast from "../../composition/showToast";
+import { apiGetAllUsers, apiCreateUser } from "../../apis/index.js";
 
 const Login = () => {
   const emailInputRef = useRef(null);
@@ -11,8 +12,10 @@ const Login = () => {
 
   const [isSignUp, setIsSignUp] = useState(true);
 
-  const switchSignUpState = () => {
+  const switchSignUpState = async () => {
     setIsSignUp((prevState) => !prevState);
+    const res = await apiGetAllUsers();
+    console.log(res);
   };
 
   const accountReminder = (
@@ -28,21 +31,34 @@ const Login = () => {
     </p>
   );
 
-  const submitHandler = (event) => {
+  const loginHandler = async (event) => {
+    event.preventDefault();
+    console.log("login");
+  };
+
+  const signupHandler = async (event) => {
     event.preventDefault();
     const email = emailInputRef.current.value;
     const password = passwordInputRef.current.value;
-    const userName = userNameInputRef.current?.value;
+    const username = userNameInputRef.current?.value;
+    await apiCreateUser({
+      email,
+      password,
+      username: username,
+    });
 
-    console.log(userName, email, password);
+    userNameInputRef.current.value =
+      emailInputRef.current.value =
+      passwordInputRef.current.value =
+        "";
+
     showToast("success", "登入成功");
   };
-
   return (
     <div className={classes.login}>
       <Card className={classes.window}>
         <header>
-          <h1 className={classes.title}>Potato Chatroom</h1>
+          <h1 className={classes.title}>HELLO WORLD</h1>
         </header>
         <form className={classes.form}>
           {isSignUp ? (
@@ -68,7 +84,10 @@ const Login = () => {
             ></input>
           </div>
         </form>
-        <Button className={classes.button} onClick={submitHandler}>
+        <Button
+          className={classes.button}
+          onClick={isSignUp ? loginHandler : signupHandler}
+        >
           {isSignUp ? "Log in" : "Sign Up"}
         </Button>
         <div>{accountReminder}</div>

@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import classes from "./Card.module.css";
 
 const Card = (props) => {
-  console.log(props);
   return (
     <div className={`${classes.card} + ${props.className}`}>
       {props.children}
@@ -11,7 +10,7 @@ const Card = (props) => {
 };
 
 Card.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.array,
   className: PropTypes.string,
 };
 
